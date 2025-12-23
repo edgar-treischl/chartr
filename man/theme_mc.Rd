@@ -4,7 +4,7 @@
 \alias{theme_mc}
 \title{Theme for mcplots}
 \usage{
-theme_mc()
+theme_mc(base_size = 12, base_family = "")
 }
 \value{
 A ggplot2 theme object

@@ -3,34 +3,29 @@
 #' @returns A ggplot2 theme object
 #' @export
 #'
-theme_mc <- function() {
+theme_mc <- function(base_size = 12, base_family = "") {
   ggplot2::theme_minimal(
-    base_family = get_mcplot_option("font_family"),
-    base_size = get_mcplot_option("base_size")
+    base_size = base_size,
+    base_family = base_family
   ) +
     ggplot2::theme(
-      # Grid
+      # Grid lines
       panel.grid.minor = ggplot2::element_blank(),
       panel.grid.major.x = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_line(linewidth = 0.4, color = "#e5e7eb"),
+      panel.grid.major.y = ggplot2::element_line(color = "#e5e7eb", linewidth = 0.4),
 
-      # Axis lines & ticks
+      # Axis lines and ticks
       axis.line = ggplot2::element_line(color = "#9ca3af"),
       axis.ticks = ggplot2::element_line(color = "#9ca3af"),
       axis.ticks.length = grid::unit(3, "pt"),
-
-      # Tick text
       axis.text = ggplot2::element_text(color = "#374151"),
 
-      # Axis titles (visible)
-      axis.title.x = ggplot2::element_text(color = "#374151"),
-      axis.title.y = ggplot2::element_text(color = "#374151"),
+      # Axis titles
+      axis.title.x = ggplot2::element_text(color = "#374151", margin = ggplot2::margin(t = 8)),
+      axis.title.y = ggplot2::element_text(color = "#374151", margin = ggplot2::margin(r = 8)),
 
-      # Plot title (visible & styled)
-      plot.title = ggplot2::element_text(
-        face = "bold",
-        size = get_mcplot_option("base_size") * 1.2
-      ),
+      # Plot title
+      plot.title = ggplot2::element_text(face = "bold", size = base_size * 1.2, margin = ggplot2::margin(b = 8)),
       plot.title.position = "plot",
 
       # Legend
@@ -38,4 +33,5 @@ theme_mc <- function() {
       legend.title = ggplot2::element_blank()
     )
 }
+
 
