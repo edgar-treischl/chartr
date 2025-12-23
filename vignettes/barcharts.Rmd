@@ -1,0 +1,121 @@
+---
+title: "barcharts"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{barcharts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+Use the `bar_chart()` function to create bar charts with various customization options. You can specify the x and y aesthetics, grouping variables, stacking options, orientation, labels, titles, legend styling, and faceting options.
+
+First, a minimal example:
+
+
+```{r}
+library(chartr)
+
+# Minimal example
+mtcars |>
+  bar_chart(
+    x = as.factor(cyl),
+    y = mpg
+  )
+```
+
+
+The `group` parameter allows you to create grouped bar charts.
+
+
+```{r}
+# Example with grouping
+mtcars |>
+  bar_chart(
+    x = as.factor(cyl),
+    y = mpg,
+    group = as.factor(gear),
+  )
+```
+
+
+The `stacked` parameter enables stacked bar charts.
+
+
+```{r}
+# Example with stacking
+mtcars |>
+  bar_chart(
+    x = as.factor(cyl),
+    y = mpg,
+    group = as.factor(gear),
+    stacked = TRUE
+  )
+```
+
+
+Finally, the `horizontal` parameter allows you to create horizontal bar charts. Additionally, you can enable labels on the bars using the `show_labels` parameter.
+
+
+```{r}
+# Horizontal stacked bar chart with labels
+mtcars |>
+  bar_chart(
+    x = as.factor(cyl),
+    y = mpg,
+    group = as.factor(gear),
+    stacked = TRUE,
+    horizontal = TRUE,
+    show_labels = TRUE
+  )
+```
+
+
+The next console shows an example using all available parameters. Please note that this is just an example, all parameters are optional and have default values.
+
+
+```{r}
+# All the defaults
+mtcars |>
+  bar_chart(
+    # Data
+    x = as.factor(cyl),
+    y = mpg,
+    
+    # Grouping & Faceting
+    group = as.factor(gear),
+    facet = as.factor(am),
+    
+    # Bar styling
+    stacked = TRUE,
+    horizontal = FALSE,
+    
+    # Labels
+    show_labels = TRUE,
+    label_size = 3.5,
+    
+    # Titles and captions
+    title = "Average MPG by Cylinder and Gear",
+    x_label = "Cylinders",
+    y_label = "Miles per Gallon",
+    legend_title = "Gears",
+    note = "Important note.",
+    
+    # Legend styling
+    legend_position = "right",
+    legend_direction = "vertical",
+    
+    # Facet options
+    facet_scales = "fixed",   # fixed, free, free_x, free_y
+    facet_ncol = 2
+  )
+
+```

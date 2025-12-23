@@ -1,0 +1,47 @@
+---
+title: "chartr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{chartr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(chartr)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+
+
+```{r}
+line_chart(
+  ggplot2::economics,
+  date,
+  unemploy
+)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+
+```{r}
+line_chart(
+  ggplot2::economics,
+  date,
+  unemploy,
+  title = "US Unemployment Over Time",
+  x_label = "Year",
+  y_label = "Number of unemployed"
+)
+```
+
+
+
+

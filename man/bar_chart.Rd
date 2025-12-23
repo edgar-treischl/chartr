@@ -9,25 +9,58 @@ bar_chart(
   x,
   y,
   group = NULL,
+  facet = NULL,
+  stacked = FALSE,
+  horizontal = FALSE,
   title = NULL,
   x_label = NULL,
-  y_label = NULL
+  y_label = NULL,
+  legend_title = NULL,
+  legend_position = "right",
+  legend_direction = "vertical",
+  note = NULL,
+  facet_scales = "fixed",
+  facet_ncol = NULL,
+  show_labels = FALSE,
+  label_size = 3.5
 )
 }
 \arguments{
-\item{data}{Data frame to be used for the chart}
+\item{data}{Data Frame}
 
 \item{x}{The x variable}
 
 \item{y}{The y variable}
 
-\item{group}{Grouping variable for fill (optional)}
+\item{group}{A grouping variable}
 
-\item{title}{The chart title (optional)}
+\item{facet}{A faceting variable}
 
-\item{x_label}{The x axis label (optional)}
+\item{stacked}{Stacked or dodged bars}
 
-\item{y_label}{The y axis label (optional)}
+\item{horizontal}{Horizontal bars}
+
+\item{title}{Title}
+
+\item{x_label}{X-axis label}
+
+\item{y_label}{Y-axis label}
+
+\item{legend_title}{Legend title}
+
+\item{legend_position}{Legend position}
+
+\item{legend_direction}{Legend direction}
+
+\item{note}{Caption / Note}
+
+\item{facet_scales}{Scales for facets}
+
+\item{facet_ncol}{Number of columns for facets}
+
+\item{show_labels}{Show labels on bars}
+
+\item{label_size}{Size of labels}
 }
 \value{
 A ggplot2 object
