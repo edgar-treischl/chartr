@@ -22,6 +22,28 @@ labels, colors, and theme settings. Ensure all parameter combinations
 either work or fail clearly, support expressions like `as.factor(...)`,
 and keep code clean, modular, and readable.
 
+# Next Steps
+
+## 1. Organize Your Package Structure
+
+## 2. Decide on Load Order (`Collate`)
+
+## 3. Implement Shared Utilities
+
+## 4. Add More Components Using the Factory
+
+## 5. Add Argument Validation
+
+## 6. Test Components Interactively
+
+## 7. Prepare Documentation & NAMESPACE
+
+## 8. Add Unit Tests
+
+## 9. Optional Enhancements
+
+## 10. Prepare for CRAN / Release
+
 ## Installation
 
 You can install the development version of chartr from
@@ -30,4 +52,16 @@ You can install the development version of chartr from
 ``` r
 # install.packages("pak")
 pak::pak("edgar-treischl/chartr")
+```
+
+``` r
+group_levels <- unique(data[[rlang::as_name(rlang::enquo(group))]])
+
+# Check for unknown groups
+unknown_groups <- setdiff(group_levels, names(fixed_colors))
+if (length(unknown_groups) > 0) {
+  stop("Unknown group(s) in data: ", paste(unknown_groups, collapse = ", "))
+}
+
+ggplot2::scale_fill_manual(values = fixed_colors[group_levels])
 ```
