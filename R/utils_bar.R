@@ -1,5 +1,3 @@
-
-
 #' Bar Position
 #'
 #' @param stacked Stacked bars
@@ -12,8 +10,6 @@ bar_position <- function(stacked, horizontal) {
     ggplot2::position_dodge(width = if (horizontal) 0.8 else 0.9)
   }
 }
-
-
 
 
 #' Bar Labels
