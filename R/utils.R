@@ -99,13 +99,16 @@ add_facets <- function(p, df, scales, ncol) {
 #' Add common theme elements to ggplot
 #'
 #' @param p ggplot object
-#' @param title A title
-#' @param x_label X axis label
-#' @param y_label Y axis label
+#' @param title Plot title
+#' @param x_label X-axis label
+#' @param y_label Y-axis label
 #' @param note Caption / Note
-#' @param legend_position Legend position
-#' @param legend_direction Legend direction
+#' @param legend_position Legend position (e.g., "right", "bottom")
+#' @param legend_direction Legend direction ("vertical" or "horizontal")
+#' @param legend_title Legend title (optional)
 #'
+#' @returns ggplot object with theme and labels applied
+#' @export
 add_common_theme <- function(
     p,
     title,
@@ -113,7 +116,8 @@ add_common_theme <- function(
     y_label,
     note,
     legend_position,
-    legend_direction
+    legend_direction,
+    legend_title = NULL
 ) {
 
   p +
@@ -121,7 +125,8 @@ add_common_theme <- function(
       title = title,
       x = x_label,
       y = y_label,
-      caption = note
+      caption = note,
+      color = legend_title
     ) +
     ggplot2::theme_minimal() +
     ggplot2::theme(
@@ -129,6 +134,7 @@ add_common_theme <- function(
       legend.direction = legend_direction
     )
 }
+
 
 
 

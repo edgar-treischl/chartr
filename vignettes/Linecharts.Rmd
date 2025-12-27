@@ -1,0 +1,158 @@
+---
+title: "Linecharts"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Linecharts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  fig.width = 10,
+  fig.height = 6,
+  out.width = "100%",
+  fig.align = "center",
+  dpi = 120,
+  comment = "#>",
+  warning = FALSE,
+  message = FALSE
+)
+
+```
+
+## Line Chart
+
+
+```{r}
+library(chartr)
+library(palmerpenguins)
+library(dplyr)
+
+# Prepare summarized data
+penguins_summary <- penguins %>%
+  filter(!is.na(body_mass_g)) %>%
+  group_by(year, species, island) %>%
+  summarise(body_mass_g = mean(body_mass_g), .groups = "drop")
+
+penguins_summary$year <- as.factor(penguins_summary$year)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+```{r}
+# 1️⃣ Base line chart (lines only)
+line_chart(
+  data = penguins_summary,
+  x = year,
+  y = body_mass_g,
+  group = species,
+  title = "Base Line Chart",
+  legend_title = "Species"
+)
+```
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r}
+# 2️⃣ Lines + points
+line_chart(
+  data = penguins_summary,
+  x = year,
+  y = body_mass_g,
+  group = species,
+  title = "Lines + Points",
+  legend_title = "Species",
+  show_points = TRUE,
+  point_size = 2
+)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r}
+# 3️⃣ Lines + points + custom shapes
+line_chart(
+  data = penguins_summary,
+  x = year,
+  y = body_mass_g,
+  group = species,
+  title = "Lines + Custom Shapes",
+  legend_title = "Species",
+  show_points = TRUE,
+  point_shape = c(16, 17, 15),
+  point_size = 2
+)
+
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+```{r}
+# 4️⃣ Faceted chart
+line_chart(
+  data = penguins_summary,
+  x = year,
+  y = body_mass_g,
+  group = species,
+  facet = island,
+  title = "Faceted Line Chart",
+  legend_title = "Species",
+  facet_scales = "free_y",
+  facet_ncol = 3
+)
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+```{r}
+# 5️⃣ Labels on last point
+line_chart(
+  data = penguins_summary,
+  x = year,
+  y = body_mass_g,
+  group = species,
+  facet = island,
+  title = "Last Point Labels",
+  legend_title = "Species",
+  show_points = TRUE,
+  show_labels = TRUE,
+  label_size = 3
+)
+```
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+```{r}
+# Full stress test (all features)
+line_chart(
+  data = penguins_summary,
+  x = as.factor(year),
+  y = body_mass_g,
+  group = species,
+  facet = island,
+  title = "Full Component Stress Test",
+  x_label = "Year",
+  y_label = "Body Mass (g)",
+  legend_title = "Species",
+  legend_position = "bottom",
+  legend_direction = "horizontal",
+  note = "Data: Palmer Penguins",
+  facet_scales = "free_y",
+  facet_ncol = 3,
+  show_points = TRUE,
+  point_shape = c(16, 17, 15),
+  point_size = 2,
+  line_size = 1,
+  show_labels = TRUE,
+  label_size = 3
+)
+```
+
+
+

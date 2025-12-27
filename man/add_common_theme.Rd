@@ -11,23 +11,29 @@ add_common_theme(
   y_label,
   note,
   legend_position,
-  legend_direction
+  legend_direction,
+  legend_title = NULL
 )
 }
 \arguments{
 \item{p}{ggplot object}
 
-\item{title}{A title}
+\item{title}{Plot title}
 
-\item{x_label}{X axis label}
+\item{x_label}{X-axis label}
 
-\item{y_label}{Y axis label}
+\item{y_label}{Y-axis label}
 
 \item{note}{Caption / Note}
 
-\item{legend_position}{Legend position}
+\item{legend_position}{Legend position (e.g., "right", "bottom")}
 
-\item{legend_direction}{Legend direction}
+\item{legend_direction}{Legend direction ("vertical" or "horizontal")}
+
+\item{legend_title}{Legend title (optional)}
+}
+\value{
+ggplot object with theme and labels applied
 }
 \description{
 Add common theme elements to ggplot

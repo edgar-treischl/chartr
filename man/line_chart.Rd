@@ -28,49 +28,49 @@ line_chart(
 )
 }
 \arguments{
-\item{data}{Data frame containing the variables.}
+\item{data}{Data Frame}
 
-\item{x}{The x-axis variable.}
+\item{x}{The x variable}
 
-\item{y}{The y-axis variable.}
+\item{y}{The y variable}
 
-\item{group}{Optional grouping variable for line color and shape.}
+\item{group}{A grouping variable}
 
-\item{facet}{Optional faceting variable for creating multiple panels.}
+\item{facet}{A faceting variable}
 
-\item{title}{Chart title.}
+\item{title}{Plot title}
 
-\item{x_label}{Label for the x-axis.}
+\item{x_label}{X-axis label}
 
-\item{y_label}{Label for the y-axis.}
+\item{y_label}{Y-axis label}
 
-\item{legend_title}{Title for the legend (applies to color and shape).}
+\item{legend_title}{Legend title}
 
-\item{legend_position}{Position of the legend (e.g., "right", "top", "bottom", "left").}
+\item{legend_position}{Legend position}
 
-\item{legend_direction}{Direction of the legend items ("vertical" or "horizontal").}
+\item{legend_direction}{Legend direction}
 
-\item{note}{Caption or note displayed below the plot.}
+\item{note}{Caption / Note}
 
-\item{facet_scales}{Scales for facets ("fixed", "free", "free_x", "free_y").}
+\item{facet_scales}{Scales for facets}
 
-\item{facet_ncol}{Number of columns for facet layout.}
+\item{facet_ncol}{Number of columns for facets}
 
-\item{show_points}{Logical, whether to display points on the lines.}
+\item{show_points}{Show points on line}
 
-\item{point_shape}{Optional vector of integers specifying point shapes for each group.}
+\item{point_shape}{Optional vector of shapes per group}
 
-\item{point_size}{Size of the points.}
+\item{point_size}{Size of points}
 
-\item{line_size}{Size of the lines.}
+\item{line_size}{Size of line}
 
-\item{show_labels}{Logical, whether to show a label next to the last observation of each line.}
+\item{show_labels}{Show labels on last point per group}
 
-\item{label_size}{Size of the last-point labels.}
+\item{label_size}{Size of labels}
 }
 \value{
-A ggplot2 object representing the line chart.
+A ggplot2 object
 }
 \description{
-Create a customizable line chart using ggplot2, with support for grouping, faceting, points, custom shapes, and last-point labels.
+Line Chart Component
 }

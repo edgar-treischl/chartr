@@ -141,7 +141,7 @@ bar_chart <- function(
 #' @returns A ggplot2 object representing the line chart.
 #' @export
 #'
-line_chart <- function(
+line_chart_raw <- function(
     data,
     x,
     y,
@@ -253,3 +253,111 @@ line_chart <- function(
 
   p
 }
+
+#' Line Chart Component
+#'
+#' @param data Data Frame
+#' @param x The x variable
+#' @param y The y variable
+#' @param group A grouping variable
+#' @param facet A faceting variable
+#' @param title Plot title
+#' @param x_label X-axis label
+#' @param y_label Y-axis label
+#' @param legend_title Legend title
+#' @param legend_position Legend position
+#' @param legend_direction Legend direction
+#' @param note Caption / Note
+#' @param facet_scales Scales for facets
+#' @param facet_ncol Number of columns for facets
+#' @param show_points Show points on line
+#' @param point_shape Optional vector of shapes per group
+#' @param point_size Size of points
+#' @param line_size Size of line
+#' @param show_labels Show labels on last point per group
+#' @param label_size Size of labels
+#'
+#' @returns A ggplot2 object
+#' @export
+line_chart <- function(
+    data,
+    x,
+    y,
+    group = NULL,
+    facet = NULL,
+    title = NULL,
+    x_label = NULL,
+    y_label = NULL,
+    legend_title = NULL,
+    legend_position = "right",
+    legend_direction = "vertical",
+    note = NULL,
+    facet_scales = "fixed",
+    facet_ncol = NULL,
+    show_points = FALSE,
+    point_shape = NULL,
+    point_size = 3.5,
+    line_size = 1,
+    show_labels = FALSE,
+    label_size = 3
+) {
+
+  # ---- Capture expressions
+  x_quo <- rlang::enquo(x)
+  y_quo <- rlang::enquo(y)
+  group_quo <- rlang::enquo(group)
+  facet_quo <- rlang::enquo(facet)
+
+  # ---- Validate required aesthetics
+  if (rlang::quo_is_null(x_quo)) rlang::abort("`x` must be supplied.")
+  if (rlang::quo_is_null(y_quo)) rlang::abort("`y` must be supplied.")
+
+  # ---- Evaluate variables
+  df <- eval_plot_vars(data, x_quo, y_quo, group_quo, facet_quo)
+
+  # ---- Build base line plot
+  p <- line_build_base_plot(df, x_quo, y_quo, group_quo, line_size)
+
+  # ---- Add points
+  if (show_points) {
+    p <- line_add_points(p, df, group_quo, point_shape, point_size)
+  }
+
+  # ---- Add labels for last point per group
+  if (show_labels && !rlang::quo_is_null(group_quo)) {
+    p <- line_add_last_point_labels(p, df, x_quo, group_quo, facet_quo, label_size)
+  }
+
+  # ---- Add facets
+  p <- add_facets(p, df, facet_scales, facet_ncol)
+
+  # ---- Add theme and labels (merged legend)
+  p <- add_common_theme(
+    p,
+    title,
+    x_label,
+    y_label,
+    note,
+    legend_position,
+    legend_direction
+  )
+
+  if (!is.null(legend_title) && !rlang::quo_is_null(group_quo)) {
+
+    # Always set color legend
+    p <- p + ggplot2::labs(color = legend_title)
+
+    # Only set shape legend if shape is actually mapped
+    if (show_points && !is.null(point_shape)) {
+      p <- p + ggplot2::labs(shape = legend_title)
+    }
+  }
+
+  # ---- Hide legend if no group
+  if (!(".group" %in% names(df)) && rlang::quo_is_null(group_quo)) {
+    p <- p + ggplot2::guides(color = "none", shape = "none")
+  }
+
+  p
+}
+

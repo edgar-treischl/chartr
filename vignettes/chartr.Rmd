@@ -21,27 +21,6 @@ library(chartr)
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
 
 
-```{r}
-line_chart(
-  ggplot2::economics,
-  date,
-  unemploy
-)
-```
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
-
-```{r}
-line_chart(
-  ggplot2::economics,
-  date,
-  unemploy,
-  title = "US Unemployment Over Time",
-  x_label = "Year",
-  y_label = "Number of unemployed"
-)
-```
-
 
 
 
